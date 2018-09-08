@@ -1,0 +1,15 @@
+{
+  "name": "candybox",
+  "version": "1.0.0",
+  "description": "send erc20 candy",
+  "main": "index.js",
+  "author": "ashimida6",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "dependencies": {
+    "lite-server": "^2.4.0"
+  }
+}

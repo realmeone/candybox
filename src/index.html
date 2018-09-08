@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Airdrop Tool</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">Airdrop Tool</h1>
+          <hr/>
+          <br/>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h3 class="text-center">Step 1. Check Env</h3>
+          <div class="form">
+            <div class="form-group">
+              <div class="alert alert-warning">If you change your metamask account or network, please REFREASH THIS PAGE(F5). </div>
+            </div>
+            <div class="form-group">
+              <label>Your Network: </label>
+              <input id="network" class="form-control" disabled name="network" value="">
+              <small id="network_hint" class="alert-danger"></small>
+            </div>
+
+            <div class="form-group">
+              <label>Your Logined Address: </label>
+              <input id="logined_address" class="form-control" disabled name="logined_address" value="">
+              <small id="logined_address_hint" class="alert-danger"></small>
+            </div>
+
+            <div class="form-group">
+                <label>Your Logined Address Balance: </label>
+                <input id="logined_address_balance" class="form-control" disabled name="logined_address_balance" value="">
+              </div>
+          </div>
+
+          <hr/>
+
+          <h3 class="text-center">Step 2. Deploy Airdrop Contract</h3>
+          <form class="form">
+            <div class="form-group">
+              <div class="alert alert-warning">
+                You must deploy <a href="sol/Airdrop.sol">Airdrop.sol</a> first.
+                And Send some tokens into the Airdrop contract. 
+                The ABI of this contract is already build in.
+              </div>
+            </div>            
+            <div class="form-group">
+              <label for="contract_address">Airdrop Contract Address: </label>
+              <input id="contract_address" class="form-control" name="contract_address" value="" placeholder="0x1234...">
+              <small class="form-text text-muted">address of this contract.</small>
+            </div>
+            <!-- <div class="form-group">
+              <label for="contract_abi">Token Contract ABI: </label>
+              <textarea id="contract_abi" class="form-control" rows="5" name="contract_abi"></textarea>
+              <small class="form-text text-muted">abi of this contract.</small>
+            </div> -->
+            <button id="load_contract_address" class="form-control btn btn-primary">Load</button>
+          </form>
+
+          <hr/>
+
+          <h3 class="text-center">Step 3. Load Owner List</h3>
+          <div class="form">
+            <div class="form-group">
+              <label for="owner_file">Excel File: </label>
+              <input id="owner_file" type="file" class="form-control" name="owner_file">
+            </div>
+            <button id="load_owner_file" class="form-control btn btn-primary">Load</button>
+          </div>
+          
+              <table class="table table-bordered mt-3 mb-5">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="owner_list">
+                  </tbody>
+                </table>              
+          
+          <hr/>
+
+          <h3 class="text-center">Step 4. Send Transactions</h3>
+          <div class="form">
+            <div class="form-group">
+              <button id="do_airdrop" class="form-control btn btn-primary">Do Airdrop!</button>
+            </div>
+            <div class="form-group">
+              <div id="airdrop_result" role="alert"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
